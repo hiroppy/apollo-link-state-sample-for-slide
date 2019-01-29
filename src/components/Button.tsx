@@ -2,6 +2,7 @@ import * as React from 'react';
 import { GET_REPO, ADD_STAR, GetRepoQuery, AddStarMutation } from '../schemas';
 
 const buttonStyle = {
+  background: '#000',
   borderRadius: 3,
   padding: '4px 12px'
 };

@@ -27,7 +27,7 @@ module.exports = {
       {
         test: /\.ts|.tsx$/,
         use: {
-          loader: 'awesome-typescript-loader',
+          loader: 'awesome-typescript-loader'
         }
       }
     ]
@@ -35,11 +35,13 @@ module.exports = {
   plugins: [
     new Dotenv(),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    })
   ],
   devServer: {
     contentBase: 'dist',
     port: 3000,
     hot: true
-  },
+  }
 };
