@@ -1,30 +1,39 @@
 import * as React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
-import { Buttons } from './buttons';
-import { counter as Counter } from '../state';
+import { Button } from './Button';
+import { Counter } from './Counter';
+import { Id } from './Id';
 
-const GET_CURRENT_COUNTER = gql`
-  query {
-    counter @client {
-      current
-    }
-  }
-`;
+const containerStyle = {
+  margin: 'auto',
+  width: 400,
+  top: 150,
+  position: 'relative' as 'relative',
+  fontFamily: "'Roboto Condensed', sans-serif"
+};
 
-class GetCurrentCounterQuery extends Query<{ counter: typeof Counter }>{}
+const boxStyle = {
+  margin: 10,
+  height: 25
+};
+
+const labelStyle = {
+  width: 70,
+  display: 'inline-block'
+};
 
 export const Top: React.FC = () => (
-  <>
-    <GetCurrentCounterQuery query={GET_CURRENT_COUNTER}>
-      {({ loading, error, data }) => {
-        if (loading) return 'Loading...';
-        if (error) return `Error! ${error.message}`;
-        if (!data) return `Error! data is undefined`;
-
-        return <p>{data.counter.current}</p>;
-      }}
-    </GetCurrentCounterQuery>
-    <Buttons />
-  </>
+  <div style={containerStyle}>
+    <div style={boxStyle}>
+      <span style={labelStyle}>id: </span>
+      <Id />
+    </div>
+    <div style={boxStyle}>
+      <span style={labelStyle}>local: </span>
+      <Counter />
+    </div>
+    <div style={boxStyle}>
+      <span style={labelStyle}>remote: </span>
+      <Button />
+    </div>
+  </div>
 );

@@ -1,25 +1,16 @@
-import { gql } from 'apollo-boost';
 import { IResolvers } from 'graphql-tools';
+import { GET_COUNTER } from './schemas';
 
 export const resolvers: IResolvers = {
   Mutation: {
-    changeValue: (_, variables, { cache }) => {
-      const query = gql`
-        query {
-          counter {
-            current
-          }
-        }
-      `;
-
+    updateCounter: (_, variables, { cache }) => {
+      const query = GET_COUNTER;
       const prev = cache.readQuery({ query });
-      const current = variables.type === '+' ?
-        ++prev.counter.current :
-        --prev.counter.current;
+      const data = { current: prev.counter.current++ };
 
-      cache.writeData({ query, data: { current } });
+      cache.writeData({ query, data });
 
-      return current;
+      return null;
     }
   }
 };

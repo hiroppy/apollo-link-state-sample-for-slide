@@ -12,6 +12,7 @@ document.body.append(root);
 const render = (Component: typeof Top) => {
   ReactDOM.render(
     <ApolloProvider client={client}>
+      <style>@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');</style>
       <Component />
     </ApolloProvider>,
     document.getElementById('root')
