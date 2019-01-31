@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import { client } from './client';
-import { Top } from './components/page';
+import { Top } from './components/Page';
 
 const root = document.createElement('div');
 
